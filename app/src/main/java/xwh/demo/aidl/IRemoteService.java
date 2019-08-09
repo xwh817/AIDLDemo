@@ -3,6 +3,7 @@ package xwh.demo.aidl;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
+import android.os.RemoteException;
 import android.util.Log;
 
 
@@ -27,6 +28,11 @@ public class IRemoteService extends Service {
 		public int add(int num1, int num2) {
 			Log.d("AIDLDemo", "IRemoteService 收到客户端调用：" + num1 +" + " + num2);
 			return num1 + num2;
+		}
+
+		@Override
+		public void addPerson(Person p) throws RemoteException {
+			Log.d("AIDLDemo", "IRemoteService 收到客户端调用：" + p.toString());
 		}
 	};
 

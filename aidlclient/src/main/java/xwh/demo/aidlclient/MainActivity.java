@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.TextView;
 
 import xwh.demo.aidl.IMyAidl;
+import xwh.demo.aidl.Person;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,6 +50,27 @@ public class MainActivity extends AppCompatActivity {
 					int result = mAidl.add(num1, num2);
 
 					mTextResult.setText(num1 + " + " + num2 + " = " + result);
+				} catch (Exception e) {
+					e.printStackTrace();
+					mTextResult.setText(e.getMessage());
+				}
+			}
+		});
+
+		this.findViewById(R.id.bt_add_person).setOnClickListener(new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				try {
+
+					if (mAidl == null) {
+						bindService();
+						throw new Exception("服务未连接，请重试！");
+					}
+
+					Person p = new Person("xwh", 100);
+					mAidl.addPerson(p);
+
+					mTextResult.setText("addPerson:" + p);
 				} catch (Exception e) {
 					e.printStackTrace();
 					mTextResult.setText(e.getMessage());
