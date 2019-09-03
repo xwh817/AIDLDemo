@@ -70,7 +70,9 @@ public class MainActivity extends AppCompatActivity {
 					Person p = new Person("xwh", 100);
 					mAidl.addPerson(p);
 
-					mTextResult.setText("addPerson:" + p);
+					Person remoteP = mAidl.getPerson();
+
+					mTextResult.setText("addPerson: " + p + "\nremotePerson: " + remoteP);
 				} catch (Exception e) {
 					e.printStackTrace();
 					mTextResult.setText(e.getMessage());
@@ -95,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
 		};
 
 		Intent intent = new Intent();
-		intent.setComponent(new ComponentName("xwh.demo.aidl", "xwh.demo.aidl.IRemoteService"));
+		intent.setComponent(new ComponentName("xwh.demo.aidl", "xwh.demo.aidl.AIDLRemoteService"));
 		bindService(intent, serviceConnection, Context.BIND_AUTO_CREATE);
 	}
 }
