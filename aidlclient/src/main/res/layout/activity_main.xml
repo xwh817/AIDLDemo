@@ -46,4 +46,11 @@
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:text="AIDL with Parcelable"/>
+
+
+	<Button
+		android:id="@+id/bt_async"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="异步调用"/>
 </LinearLayout>

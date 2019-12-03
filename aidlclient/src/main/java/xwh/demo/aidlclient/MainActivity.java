@@ -79,6 +79,24 @@ public class MainActivity extends AppCompatActivity {
 				}
 			}
 		});
+
+		this.findViewById(R.id.bt_async).setOnClickListener(v -> new Thread(() -> {
+			try {
+				for (int i = 0; i < 10; i++) {
+					int result = mAidl.add(i, i);
+
+					String re = i + " + " + i + " = " + result + "\n";
+
+					mTextResult.post(()->{
+						mTextResult.append(re);
+					});
+
+					Thread.sleep(1000);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}).start());
 	}
 
 	private void bindService() {
